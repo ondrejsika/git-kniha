@@ -18,11 +18,42 @@
 
 Proc jsem se rozhodl psat knizku o Gitu, kdyz je jich vsude plno? A kdyz je i slavna Pro Git od Scotta Sharona prelozena a zdarma dostupna na \lstinline|https://knihy.nic.cz/|. Tyto knizku jsou urcene programatorum a vetsina jich je hodne pokrocilich, ja se v teto knize budu snazit ukazat jak Git funguje prevazne neprogramatorum pripadne zacinajicim programatorum. Verim ze Git je vhodny i pro lidi, kteri napriklad pisi nejake prace, prezentace a nemusi byt vubec programatori.
 
+Git ma mnoho grafickych nastaveb, ale ja verim, ze pokud si clovek osaha ovladani z terminalu, nakonec to pro nej bude nejlepsi. Proto v teto knizce budu vse ovladat z terminalu, shlellu a nebudu se zabyvat klikatky. Pokud je pro vas Shell neco uplne noveho, kouknete se na {\bf Ondrej~Sika:~Shell~kniha} (\lstinline|https://ondrejsika.com/books/shell-kniha|). Budu se ovsem snazit nejnutnejsi minimum popsat i v teto knize.
+
 \section{Co je to Git}
 
 Git je verzovaci system, ktery je primarne urcen pro verzovani kodu. Ale muzeme jim verzovat prakticky cokoliv. Git je velmi rozsireny (dnes uz majoritni) verzovaci system a pro kazdeho programatora je jeho znalost naprostou nutnosti. Jeho hlavni vyhody jsou moznost spoluprace nad jednim kodem ve vice lidech, prace na ruzmych castech kodu bezpecne v oddelenych vetvich a revize kodu.
 
 \section{Vytvoreni repozitare}
+
+Repozitar se vytvari bud prikazem \lstinline|git init| a nebo se naklonuje. O klonovaci bude rec v kapotole vzdalene repozitare.
+
+Pokud chceme v nekterem adresari vytvorit repozitar, staci zavolat prikaz \lstinline|git init|.
+
+Priklad:
+
+\begin{lstlisting}
+sika@sika-mol:~$ mkdir myrepo
+sika@sika-mol:~$ cd myrepo
+sika@sika-mol:~/myrepo$ git init
+Initialized empty Git repository in /home/sika/myrepo/.git/
+sika@sika-mol:~/myrepo (master)$ 
+\end{lstlisting}
+
+\section{Gitignore}
+
+Pred tim, nez zacneme s repozitarem pracovat, je dobre Gitu rici o jake soubory se nema zajimat. Jsou to soubory docasne, napriklad zalohy editoru, nastavenu prostredi ci zkompilovane programy. Ty verzovat nemusime a ani nechceme. Proto je vhodne zjistit, jake soubory v repozitari nechceme jeste pred tim, nez s nim zacneme pracovat. Napriklad, kdyz budu psat knizku v LaTeXu tak chci verzovat jen .tex soubory a vystupni .pdf ne (ten si kazdy vytvori sam z .tex zdroju). LaTeX ale pri generovani vytvari jeste .aux, .log a .toc. Dale vim, ze budu knizku psat ve Vimu, ktery vytvari soubory .swp. Vsechny proto napisu do souboru \lstinline|.gitignore| (tecka na zacatku znamena v Unix svete skryty soubor/slozka). Kdyz chci ignorovat vsechny soubory s priponou .pdf, napisi do gitignore \lstinline|*.pdf| Nas soubor bude potom vypadat takto: 
+
+\begin{lstlisting}
+*.swp
+*.aux
+*.log
+*.toc
+*.pdf
+
+\end{lstlisting}
+
+
 \section{3 stavy}
 \section{Commit}
 \section{Vetve}
