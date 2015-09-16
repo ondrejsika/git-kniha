@@ -33,16 +33,16 @@ Pokud chceme v nekterem adresari vytvorit repozitar, staci zavolat prikaz \lstin
 Priklad:
 
 \begin{lstlisting}
-sika@sika-mol:~$ mkdir myrepo
+sika@sika:~$ mkdir myrepo
 sika@sika-mol:~$ cd myrepo
-sika@sika-mol:~/myrepo$ git init
+sika@sika:~/myrepo$ git init
 Initialized empty Git repository in /home/sika/myrepo/.git/
-sika@sika-mol:~/myrepo (master)$ 
+sika@sika:~/myrepo (master)$
 \end{lstlisting}
 
 \section{Gitignore}
 
-Pred tim, nez zacneme s repozitarem pracovat, je dobre Gitu rici o jake soubory se nema zajimat. Jsou to soubory docasne, napriklad zalohy editoru, nastavenu prostredi ci zkompilovane programy. Ty verzovat nemusime a ani nechceme. Proto je vhodne zjistit, jake soubory v repozitari nechceme jeste pred tim, nez s nim zacneme pracovat. Napriklad, kdyz budu psat knizku v LaTeXu tak chci verzovat jen .tex soubory a vystupni .pdf ne (ten si kazdy vytvori sam z .tex zdroju). LaTeX ale pri generovani vytvari jeste .aux, .log a .toc. Dale vim, ze budu knizku psat ve Vimu, ktery vytvari soubory .swp. Vsechny proto napisu do souboru \lstinline|.gitignore| (tecka na zacatku znamena v Unix svete skryty soubor/slozka). Kdyz chci ignorovat vsechny soubory s priponou .pdf, napisi do gitignore \lstinline|*.pdf| Nas soubor bude potom vypadat takto: 
+Pred tim, nez zacneme s repozitarem pracovat, je dobre Gitu rici o jake soubory se nema zajimat. Jsou to soubory docasne, napriklad zalohy editoru, nastavenu prostredi ci zkompilovane programy. Ty verzovat nemusime a ani nechceme. Proto je vhodne zjistit, jake soubory v repozitari nechceme jeste pred tim, nez s nim zacneme pracovat. Napriklad, kdyz budu psat knizku v LaTeXu tak chci verzovat jen .tex soubory a vystupni .pdf ne (ten si kazdy vytvori sam z .tex zdroju). LaTeX ale pri generovani vytvari jeste .aux, .log a .toc. Dale vim, ze budu knizku psat ve Vimu, ktery vytvari soubory .swp. Vsechny proto napisu do souboru \lstinline|.gitignore| (tecka na zacatku znamena v Unix svete skryty soubor/slozka). Kdyz chci ignorovat vsechny soubory s priponou .pdf, napisi do gitignore \lstinline|*.pdf| Nas soubor bude potom vypadat takto:
 
 \begin{lstlisting}
 *.swp
@@ -57,8 +57,82 @@ Pred tim, nez zacneme s repozitarem pracovat, je dobre Gitu rici o jake soubory 
 \section{3 stavy}
 \section{Commit}
 \section{Vetve}
-\section{Merge}
-\section{Rebase}
+
+Nejdrive co jsou to vetve. Muzeme si to predstavit ze pracujeme na 2 ruznych castich projektu aniz by se mezi sebou ovlivnovali. Jsou nezavisle az do te doby co se je rozhodneme sloucit. Prace s vetvemi je dulezita a git ji ma vyresenou velmi efektivne a je rychla.
+
+Doted jsme pracovali pouze ve vetvi {\bf master}. Prikaz \lstinline|git branch| nam vypise lokalni vetve a oznaci nam hvezdickou aktualni vetev.
+
+\begin{lstlisting}
+sika@sika:~/myrepo (master)$ git branch
+* master
+\end{lstlisting}
+
+Jak si muzete vsimnout, muj prompt shellu sam ukazuje aktualni vetev, v zavorkach.
+
+Pokud chci vytvorit novou vetev, pouziji prikaz \lstinline|git branc <name>| kde name je nazev nove vetve. Vetve je rozumne pojmenovavat podle toho co v nic chceme delat, ale nazev se vzdy da zmenit.
+
+Pri praci s vetvemi doporucuji mit cisty working directory, toho muzeme jednoduse docilit prikazem \lstinline|git stash|, jak uz vime.
+
+\begin{lstlisting}
+sika@sika:~/myrepo (master)$ git branch experimental
+sika@sika:~/myrepo (master)$ git branch
+  experimental
+* master
+sika@sika:~/myrepo (master)$
+\end{lstlisting}
+
+Vetev jsme sice vytvorili, ale porad zustavame na te puvodni. V nekdterych pripadech to plati, ze si vytvorime vetev jen jako zalohu a pokracujeme v praci, ale v typickem pripade je to obracene. Vytvarime novou vetev abychom v ni delali nejakou slozitejsi praci.
+
+Pro prepnuti pouzijeme prikaz \lstinline|git checkout <name>|, ktery nas prepne na danou vetev.
+
+\begin{lstlisting}
+sika@sika:~/myrepo (master)$ git checkout experimental
+Switched to branch 'experimental'
+sika@sika:~/myrepo (experimental)$ git branch
+* experimental
+  master
+sika@sika:~/myrepo (experimental)$
+\end{lstlisting}
+
+Pokud se chceme prepnot do neexistujici vetve, git vypise chybu:
+
+\begin{lstlisting}
+sika@sika:~/myrepo (master)$ git checkout new
+error: pathspec 'new' did not match any file(s) known to git.
+\end{lstlisting}
+
+Kdyz ovsem chceme vetev vytvorit a rovnou se do ni prepnout, coz je podle me nejcastejsi pouziti, pouzijeme prikaz git checkout s parametrem -b:
+
+\begin{lstlisting}
+sika@sika:~/myrepo (master)$ git branch
+* master
+sika@sika:~/myrepo (master)$ git checkout -b new
+Switched to a new branch 'new'
+sika@sika:~/myrepo (new)$ git branch
+  master
+* new
+sika@sika:~/myrepo (new)$
+\end{lstlisting}
+
+Uz vime jak vetve vytvaret a prepinat, jeste je potreba umet vetev smazat. Prikaz pro smazani vetve je \lstinline|git branch -d <name>|. Nemuzeme ovsem smazat vetev na ktere se aktualne nachazime.
+
+\begin{lstlisting}
+sika@sika:~/myrepo (new)$ git branch
+  master
+* new
+sika@sika:~/myrepo (new)$ git checkout master
+Switched to branch 'master'
+sika@sika:~/myrepo (master)$ git branch -d new
+Deleted branch new (was 3a612f1).
+sika@sika:~/myrepo (master)$ git branch
+* master
+\end{lstlisting}
+
+Ted uz je na case zacit vetve pouzivat, uvidite, ulehci vam praci. Umozni vam totiz v jedne vetvi prestat a v jine pokracovat na uplne jine casti vaseho projektu. Klidne muzete ve dvou vetvich delat to a same najednou a potom vybrat tu vetev s lepsim resenim a pouzit ji a druhou smazat.
+
+
+\subsection{Merge}
+\subsection{Rebase}
 \section{Vzdalene repozitare}
 \section{Github}
 
