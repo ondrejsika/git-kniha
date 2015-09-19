@@ -134,8 +134,45 @@ Ted uz je na case zacit vetve pouzivat, uvidite, ulehci vam praci. Umozni vam to
 \subsection{Merge}
 \subsection{Rebase}
 \section{Vzdalene repozitare}
-\section{Github}
-\section{Alternativy}
+
+Vzdaleny repozitar je kopie (klon) lokalniho repozitare, ktery je ulozen nekde na serveru. Pro ukazky prace se vzdalenymi repozitari si musime nejaky vytvorit, k tomu muzeme pouzit nejake sluzby jako je napriklad Github.
+
+\subsection{Github}
+
+Github je misto kde si muzete vytvorit vzdalene repozitare. Je to misto, kde je vetsina opensource projektu a komunita kolem nich. Nas ale bude Gitub zajimat pouze z pohledu hostovani vzdalenych repozitaru.
+
+Proto se prosim zaregistrujte na Githubu, pro verejne repozitare je zdarma, bez nutnosti zadat kreditku.
+
+\subsubsection{SSH klic}
+
+Pro komunikaci se serverem se pouziva overovani pomoci klicu, pokud je nemate, bude nutne si je vytvorit. Pokud chcete zjistit, zda ssh klic jiz mate, staci prikaz \lstinline|ls ~/.ssh/id_rsa.pub|. Pokud tento prikaz vypise \lstinline|id_rsa.pub|, klic mate, staci ho jen pridat do Githubu. Pokud ne, vytvorte si novy prikazem \lstinline|ssh-keygen|.
+
+\begin{lstlisting}
+ssh-keygen % TODO
+\end{lstlisting}
+
+Kdyz znovu zkusite zkontrolovat klic, uz ho budete mit. Pak si vypiste prikazem \lstinline|cat ~/.ssh/id_rsa.pub| obsah verejneho klice a zkopirujte si ho. V githubu si otevrete zalozku {\bf ssh keys} v nastaveni a pridejte si ho.
+
+\subsubsection{Novy repozitar}
+
+Po uspesnem pridani ssh klice kliknete na tlacitko {\bf new repository}. Vyplnite nazev a potom se dostanete na stranku kde je toto:
+
+
+\begin{lstlisting}
+clone % TODO
+\end{lstlisting}
+
+or
+
+\begin{lstlisting}
+init % TODO
+\end{lstlisting}
+
+To nam zatim pro praci staci. Mame vytvoreny vzdaleny repozitar.
+
+\subsection{Prace se vzdalenymi repozitari}
+
+\subsection{Alternativy ke Githubu}
 
 Alternativ ke Githubu je mnoho, ja zde uvedu pouze 2, ktere jsou podle me vyznamne a stoji za to je zminit. Prvni alternativou je Bitbucket (\lstinline|https://bitbucket.org|). Je to take sluzba jako Github s tim rozdilem, ze se neplati za pocet privatnich repozitaru, ale za pocet kolaborantu (lidi co pracuji na danem projektu). Pokud tedy potrebujete privatni repozitare, tak do 5 spolupracovniku je to take zdarma.
 
