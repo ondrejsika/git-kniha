@@ -24,6 +24,45 @@ Git ma mnoho grafickych nastaveb, ale ja verim, ze pokud si clovek osaha ovladan
 
 Git je verzovaci system, ktery je primarne urcen pro verzovani kodu. Ale muzeme jim verzovat prakticky cokoliv. Git je velmi rozsireny (dnes uz majoritni) verzovaci system a pro kazdeho programatora je jeho znalost naprostou nutnosti. Jeho hlavni vyhody jsou moznost spoluprace nad jednim kodem ve vice lidech, prace na ruzmych castech kodu bezpecne v oddelenych vetvich a revize kodu.
 
+\section{Instalace}
+
+Na Debian based Linuxu se GIT instaluje prikazem:
+
+\begin{lstlisting}
+sudo apt-get install git
+\end{lstlisting}
+
+na Redhatu
+
+\begin{lstlisting}
+sudo yum install git
+\end{lstlisting}
+
+a na OSX musite mit nainstalovany {\bf brew} a pak prikazem
+
+\begin{lstlisting}
+brew install git
+\end{lstlisting}
+
+Pokud brew nemate, instrukce k instalaci naleznete na \\
+\lstinline|http://brew.sh/|.
+
+\section{Nastaveni GITu}
+
+Pred zacatkem pouzivani je dulezite git nastavit. Musime nastavit jmeno a email ktery se bude ukazovat jako autor zmen. Pokud chci nastavit me jmeno {\bf Ondrej Sika} a muj email {\bf ondrej@ondrejsika.com}, provedu toto:
+
+\begin{lstlisting}
+git config --global user.name 'Ondrej Sika'
+git config --global user.email ondrej@ondrejsika.com
+\end{lstlisting}
+
+Tyto prikazy nastavi jmeno a uzivatele pro konkretniho uzivatele, pokud chcete nastaveni aplikovat na cely pocitac, pouzijte misto \lstinline|--global| prepinac \lstinline|--system| takto:
+
+\begin{lstlisting}
+sudo git config --system user.name 'Ondrej Sika'
+sudo git config --system user.email ondrej@ondrejsika.com
+\end{lstlisting}
+
 \section{Vytvoreni repozitare}
 
 Repozitar se vytvari bud prikazem \lstinline|git init| a nebo se naklonuje. O klonovaci bude rec v kapotole vzdalene repozitare.
