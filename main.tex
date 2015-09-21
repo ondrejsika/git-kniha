@@ -79,6 +79,19 @@ Initialized empty Git repository in /home/sika/r/.git/
 sika@x1:~/r (master)$
 \end{lstlisting}
 
+\subsection{Git status}
+
+\lstinline|git status| je prikaz, ktery vypise stav vaseho pracovniho adresare a repozitare. Je velmi uzitecny. Po vytvoreni noveho repozitare vypise toto:
+
+\begin{lstlisting}
+sika@x1:~/r (master)$ git status
+On branch master
+
+Initial commit
+
+nothing to commit (create/copy files and use "git add" to track)
+\end{lstlisting}
+
 \section{Gitignore}
 
 Pred tim, nez zacneme s repozitarem pracovat, je dobre Gitu rici o jake soubory se nema zajimat. Jsou to soubory docasne, napriklad zalohy editoru, nastavenu prostredi ci zkompilovane programy. Ty verzovat nemusime a ani nechceme. Proto je vhodne zjistit, jake soubory v repozitari nechceme jeste pred tim, nez s nim zacneme pracovat. Napriklad, kdyz budu psat knizku v LaTeXu tak chci verzovat jen .tex soubory a vystupni .pdf ne (ten si kazdy vytvori sam z .tex zdroju). LaTeX ale pri generovani vytvari jeste .aux, .log a .toc. Dale vim, ze budu knizku psat ve Vimu, ktery vytvari soubory .swp. Vsechny proto napisu do souboru \lstinline|.gitignore| (tecka na zacatku znamena v Unix svete skryty soubor/slozka). Kdyz chci ignorovat vsechny soubory s priponou .pdf, napisi do gitignore \lstinline|*.pdf| Nas soubor bude potom vypadat takto:
@@ -92,9 +105,47 @@ Pred tim, nez zacneme s repozitarem pracovat, je dobre Gitu rici o jake soubory 
 
 \end{lstlisting}
 
+\section{Pridavani souboru do GITu}
 
-\section{3 stavy}
+Proto aby GIT mohl se souborem pracovat, je nutne nejdrive soubor pridat, to se dela prikazem \lstinline|git add|.
+
+\begin{lstlisting}
+sika@x1:~/r (master)$ vim prvni  # vytvoreni noveho souboru textem
+sika@x1:~/r (master)$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+    prvni
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+sika@x1:~/r (master)$ git add prvni
+sika@x1:~/r (master)$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+    new file:   prvni
+\end{lstlisting}
+
+Pokud chceme pridat vice souboru, muzeme je psat za sebe, muzeme pridat i adresare a pouzivat wildcarty (*.txt).
+
+\begin{lstlisting}
+git add druhy treti adresar/
+\end{lstlisting}
+
+Pokud chceme pridat vse, muzeme pouzit \lstinline|git add .|
+
 \section{Commit}
+\subsection{3 stavy}
+
 \section{Vetve}
 
 Nejdrive co jsou to vetve. Muzeme si to predstavit ze pracujeme na 2 ruznych castich projektu aniz by se mezi sebou ovlivnovali. Jsou nezavisle az do te doby co se je rozhodneme sloucit. Prace s vetvemi je dulezita a git ji ma vyresenou velmi efektivne a je rychla.
