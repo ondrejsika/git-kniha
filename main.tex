@@ -146,6 +146,12 @@ Pokud chceme pridat vse, muzeme pouzit \lstinline|git add .|
 \section{Commit}
 \subsection{3 stavy}
 
+\section{Historie}
+\subsection{git log}
+\subsection{tig}
+\subsection{gitk}
+
+
 \section{Vetve}
 
 Nejdrive co jsou to vetve. Muzeme si to predstavit ze pracujeme na 2 ruznych castich projektu aniz by se mezi sebou ovlivnovali. Jsou nezavisle az do te doby co se je rozhodneme sloucit. Prace s vetvemi je dulezita a git ji ma vyresenou velmi efektivne a je rychla.
@@ -222,6 +228,14 @@ Ted uz je na case zacit vetve pouzivat, uvidite, ulehci vam praci. Umozni vam to
 
 
 \subsection{Merge}
+
+Merge je jednim ze zpusobu jak sloucit 2 vetve. Merge vytvori novy commit se 2 rodici a slouci tak 2 vetve. Pokud se ve vetvich neupravovala konfliktni cast projektu (stejna cast jednoho souboru) pak probehne merge bez komplikaci.
+
+\begin{lstlisting}
+% TODO merge
+\end{lstlisting}
+
+
 \subsection{Rebase}
 \section{Vzdalene repozitare}
 
@@ -258,9 +272,38 @@ or
 init % TODO
 \end{lstlisting}
 
+Nazev {\bf origin} je konvence pro nazev primarniho vzdaleneho repozitare. Zaroven je tento nazev jako defaultni vzdaleny repozitar pri clonovani.
+
 To nam zatim pro praci staci. Mame vytvoreny vzdaleny repozitar.
 
-\subsection{Prace se vzdalenymi repozitari}
+\subsection{push}
+
+Pokud udelame nejake commity a chceme je dostat do vzdaleneho repozitare, pouzijeme k tomu prikaz push. Prikaz push ma tuto syntaxi:
+
+\begin{lstlisting}
+git push <remote> <branch>
+\end{lstlisting}
+
+Pokud mame pridan nas repozitar a chceme do nej dostat nasi lokalni vetev master, pouzizejeme:
+
+\begin{lstlisting}
+git push origin master
+\end{lstlisting}
+
+Pokud chceme pushnout do originu vetev production:
+
+\begin{lstlisting}
+git push origin production
+\end{lstlisting}
+
+Muzeme ovsem chtit pushnout lokalni vetev do repozitare s jinym jmenem, napriklad lokalni vetev master do vetve sika\_master.
+
+\begin{lstlisting}
+git push origin master:sika_master
+\end{lstlisting}
+
+\subsection{fetch}
+\subsection{merge}
 
 \subsection{Alternativy ke Githubu}
 
