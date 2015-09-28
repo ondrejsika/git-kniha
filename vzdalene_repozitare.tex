@@ -1,0 +1,78 @@
+\section{Vzdalene repozitare}
+
+Vzdaleny repozitar je kopie (klon) lokalniho repozitare, ktery je ulozen nekde na serveru. Pro ukazky prace se vzdalenymi repozitari si musime nejaky vytvorit, k tomu muzeme pouzit nejake sluzby jako je napriklad Github.
+
+\subsection{Github}
+
+Github je misto kde si muzete vytvorit vzdalene repozitare. Je to misto, kde je vetsina opensource projektu a komunita kolem nich. Nas ale bude Gitub zajimat pouze z pohledu hostovani vzdalenych repozitaru.
+
+Proto se prosim zaregistrujte na Githubu, pro verejne repozitare je zdarma, bez nutnosti zadat kreditku.
+
+\subsubsection{SSH klic}
+
+Pro komunikaci se serverem se pouziva overovani pomoci klicu, pokud je nemate, bude nutne si je vytvorit. Pokud chcete zjistit, zda ssh klic jiz mate, staci prikaz \lstinline|ls ~/.ssh/id_rsa.pub|. Pokud tento prikaz vypise \lstinline|id_rsa.pub|, klic mate, staci ho jen pridat do Githubu. Pokud ne, vytvorte si novy prikazem \lstinline|ssh-keygen|.
+
+\begin{lstlisting}
+ssh-keygen % TODO
+\end{lstlisting}
+
+Kdyz znovu zkusite zkontrolovat klic, uz ho budete mit. Pak si vypiste prikazem \lstinline|cat ~/.ssh/id_rsa.pub| obsah verejneho klice a zkopirujte si ho. V githubu si otevrete zalozku {\bf ssh keys} v nastaveni a pridejte si ho.
+
+\subsubsection{Novy repozitar}
+
+Po uspesnem pridani ssh klice kliknete na tlacitko {\bf new repository}. Vyplnite nazev a potom se dostanete na stranku kde je toto:
+
+
+\begin{lstlisting}
+clone % TODO
+\end{lstlisting}
+
+or
+
+\begin{lstlisting}
+init % TODO
+\end{lstlisting}
+
+Nazev {\bf origin} je konvence pro nazev primarniho vzdaleneho repozitare. Zaroven je tento nazev jako defaultni vzdaleny repozitar pri clonovani.
+
+To nam zatim pro praci staci. Mame vytvoreny vzdaleny repozitar.
+
+\subsection{push}
+
+Pokud udelame nejake commity a chceme je dostat do vzdaleneho repozitare, pouzijeme k tomu prikaz push. Prikaz push ma tuto syntaxi:
+
+\begin{lstlisting}
+git push <remote> <branch>
+\end{lstlisting}
+
+Pokud mame pridan nas repozitar a chceme do nej dostat nasi lokalni vetev master, pouzizejeme:
+
+\begin{lstlisting}
+git push origin master
+\end{lstlisting}
+
+Pokud chceme pushnout do originu vetev production:
+
+\begin{lstlisting}
+git push origin production
+\end{lstlisting}
+
+Muzeme ovsem chtit pushnout lokalni vetev do repozitare s jinym jmenem, napriklad lokalni vetev master do vetve sika\_master.
+
+\begin{lstlisting}
+git push origin master:sika_master
+\end{lstlisting}
+
+\subsection{fetch}
+\subsection{merge}
+
+\subsection{Alternativy ke Githubu}
+
+Alternativ ke Githubu je mnoho, ja zde uvedu pouze 2, ktere jsou podle me vyznamne a stoji za to je zminit. Prvni alternativou je Bitbucket (\lstinline|https://bitbucket.org|). Je to take sluzba jako Github s tim rozdilem, ze se neplati za pocet privatnich repozitaru, ale za pocet kolaborantu (lidi co pracuji na danem projektu). Pokud tedy potrebujete privatni repozitare, tak do 5 spolupracovniku je to take zdarma.
+
+Dalsi alternativou je Gitlab. Ten je opensource a muzete si ho jednoduse spaustit na vlastnim serveru a vase data budou pouze u vas. Existuje i v hostovane verzi na \lstinline|https://gitlab.com|. Gitlab ma tu vyhodu, ze nema zadne omezeni na pocet kolaborantu ani na pocet privatnich repozitaru.
+
+Proc je Bitbucket tak rozsireny, i kdyz umi zdarma pouze cast toho co umi Gitlab? Na to je jednoducha odpoved, Gitlab je pomerne novy a dlouho to byla jedina moznost jak mit zdarma privatni repozitare.
+
+Osobne pouzivam na opensource projekty Github kvuli komunite (issues, pullrequesty, ...) a na privatni projekty si sam hostuji Gitlab.
+

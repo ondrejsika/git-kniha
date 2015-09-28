@@ -1,0 +1,13 @@
+\section{Gitignore}
+
+Pred tim, nez zacneme s repozitarem pracovat, je dobre Gitu rici o jake soubory se nema zajimat. Jsou to soubory docasne, napriklad zalohy editoru, nastavenu prostredi ci zkompilovane programy. Ty verzovat nemusime a ani nechceme. Proto je vhodne zjistit, jake soubory v repozitari nechceme jeste pred tim, nez s nim zacneme pracovat. Napriklad, kdyz budu psat knizku v LaTeXu tak chci verzovat jen .tex soubory a vystupni .pdf ne (ten si kazdy vytvori sam z .tex zdroju). LaTeX ale pri generovani vytvari jeste .aux, .log a .toc. Dale vim, ze budu knizku psat ve Vimu, ktery vytvari soubory .swp. Vsechny proto napisu do souboru \lstinline|.gitignore| (tecka na zacatku znamena v Unix svete skryty soubor/slozka). Kdyz chci ignorovat vsechny soubory s priponou .pdf, napisi do gitignore \lstinline|*.pdf| Nas soubor bude potom vypadat takto:
+
+\begin{lstlisting}
+*.swp
+*.aux
+*.log
+*.toc
+*.pdf
+
+\end{lstlisting}
+

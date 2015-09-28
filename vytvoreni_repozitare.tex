@@ -1,0 +1,29 @@
+\section{Vytvoreni repozitare}
+
+Repozitar se vytvari bud prikazem \lstinline|git init| a nebo se naklonuje. O klonovaci bude rec v kapotole vzdalene repozitare.
+
+Pokud chceme v nekterem adresari vytvorit repozitar, staci zavolat prikaz \lstinline|git init|.
+
+Priklad:
+
+\begin{lstlisting}
+sika@x1:~$ mkdir r
+sika@x1:~$ cd r
+sika@x1:~/r$ git init
+Initialized empty Git repository in /home/sika/r/.git/
+sika@x1:~/r (master)$
+\end{lstlisting}
+
+\subsection{Git status}
+
+\lstinline|git status| je prikaz, ktery vypise stav vaseho pracovniho adresare a repozitare. Je velmi uzitecny. Po vytvoreni noveho repozitare vypise toto:
+
+\begin{lstlisting}
+sika@x1:~/r (master)$ git status
+On branch master
+
+Initial commit
+
+nothing to commit (create/copy files and use "git add" to track)
+\end{lstlisting}
+

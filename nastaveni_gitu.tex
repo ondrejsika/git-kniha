@@ -1,0 +1,16 @@
+\section{Nastaveni GITu}
+
+Pred zacatkem pouzivani je dulezite git nastavit. Musime nastavit jmeno a email ktery se bude ukazovat jako autor zmen. Pokud chci nastavit me jmeno {\bf Ondrej Sika} a muj email {\bf ondrej@ondrejsika.com}, provedu toto:
+
+\begin{lstlisting}
+git config --global user.name 'Ondrej Sika'
+git config --global user.email ondrej@ondrejsika.com
+\end{lstlisting}
+
+Tyto prikazy nastavi jmeno a uzivatele pro konkretniho uzivatele, pokud chcete nastaveni aplikovat na cely pocitac, pouzijte misto \lstinline|--global| prepinac \lstinline|--system| takto:
+
+\begin{lstlisting}
+sudo git config --system user.name 'Ondrej Sika'
+sudo git config --system user.email ondrej@ondrejsika.com
+\end{lstlisting}
+
